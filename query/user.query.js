@@ -4,9 +4,11 @@ const { ObjectId } = require('mongodb')
 
 exports.create_user_query = async (email, password) => {
     try {
+        console.log(email,password);
         const userDetails = await user_model.findOne({ email: email });
         if (userDetails) {
-            return Promise.reject({ status: false, status_code: 500, message: "User already exist" });
+            console.log(userDetails);
+            return Promise.reject({ status: false, status_code: 409, message: "User already exist" });
         } else {
             const encrypted_password = encryptPassword(password);
             let user = await user_model.create({ email, password:encrypted_password })
@@ -17,6 +19,6 @@ exports.create_user_query = async (email, password) => {
             }    
         }
     } catch (error) {
-        console.log(error);
+        return Promise.reject(error);
     }
 }
