@@ -17,7 +17,7 @@ const check_credentials = async (email, password) => {
             return Promise.reject({ status: false, status_code: 400,message: 'User not found'})
         }
     } catch (error) {
-        return Promise.reject(error)
+        console.log(error);
     }
 }
 
