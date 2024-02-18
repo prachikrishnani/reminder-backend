@@ -9,7 +9,7 @@ const check_credentials = async (email, password) => {
         if (checkUser) {
             const comparePassword = decryptPassword(password, checkUser.password)
             if (comparePassword) {
-                return Promise.resolve({ status: true, status_code: 200, message: "Logged in Successfully", })
+                return Promise.resolve({ status: true, status_code: 200, body: checkUser })
             } else {
                 return Promise.reject({ status: false, status_code: 206,message: "Invalid Email or Password" })
             }

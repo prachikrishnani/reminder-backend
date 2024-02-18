@@ -36,7 +36,8 @@ const reminderListSchema = mongoose.Schema({
         default: Date.now()
     },
     createdBy: {
-        type: String
+        type: String,
+        required: [true, 'Please login']
     }
 })
 
